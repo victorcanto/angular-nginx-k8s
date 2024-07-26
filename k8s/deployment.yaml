@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-ssr-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-ssr
+  template:
+    metadata:
+      labels:
+        app: angular-ssr
+    spec:
+      containers:
+        - name: angular-ssr
+          image: angular-ssr-nginx:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+            - containerPort: 4000
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi

@@ -9,5 +9,5 @@ FROM nginx:alpine
 RUN apk add --no-cache nodejs npm
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=node_stage /app/dist /app/dist
-EXPOSE 80
+EXPOSE 80 4000
 CMD ["sh", "-c", "node /app/dist/ssr-nginx-poc/server/server.mjs & nginx -g 'daemon off;'"]
